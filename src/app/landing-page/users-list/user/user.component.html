@@ -1,0 +1,18 @@
+<div class="user">
+
+  <div class="image">
+    <img class="img" src="{{user.avatarUrl}}">
+  </div>
+
+  <div class="name">
+    <a [routerLink]="[user.userName]"><span style=" font-weight: bold"> {{user.userName}}</span></a>
+    <p>{{user.userType}}</p>
+  </div>
+
+  <div class="repos">
+    <h2>User repos</h2>
+    <p *ngFor="let repo of reposArray">{{repo}}</p>
+    <p *ngIf="reposArray.length === 0">Repositories not found</p>
+  </div>
+
+</div>

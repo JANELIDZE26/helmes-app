@@ -1,0 +1,110 @@
+.nav {
+  position: absolute;
+  top: 8%;
+  left: 5%;
+  font-size: 20px;
+}
+
+.info a {
+  color: #c6a15b;
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.info a:hover {
+  color: #d9ba7b;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 70%;
+  padding: 50px;
+  background-color: #C1292E;
+  color: white;
+  border-radius: 25px;
+}
+
+.org-img {
+  width: 2%;
+  border-radius: 10px;
+}
+
+.img {
+  width: 40%;
+  height: auto;
+  border-radius: 10px;
+  float: left;
+  margin: 0 40px 40px 0;
+}
+
+.info p, h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.info {
+  margin-bottom: 30px;
+}
+
+
+.repos p {
+  margin: 10px 0;
+  padding: 0;
+}
+
+.org {
+  width: 100%;
+  margin-top: 70px;
+}
+
+.org h3 {
+  transform: translate(-27%);
+  /*margin-bottom: 30px;*/
+  /*margin-top: 30px;*/
+  text-align: center;
+  margin: 30px auto;
+}
+
+.organizations {
+  border-top: 1px solid black;
+  position: relative;
+}
+
+.organizations img {
+  width: 13%;
+  margin: 10px;
+}
+
+.organizations a {
+
+  margin-left: 50px;
+  position: absolute;
+  top: 15px;
+  display: inline-block;
+  text-decoration: none;
+
+}
+
+.organizations a {
+  color: #c6a15b;
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.organizations a:hover {
+  color: #d9ba7b;
+}
+
+.icon {
+  color: #161925 !important;
+  transition: color .3s;
+  font-size:60px;
+}
+
+.icon:hover {
+  color: #D5AC4E !important;
+}

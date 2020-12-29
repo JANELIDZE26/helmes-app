@@ -1,0 +1,25 @@
+<div class="form-container">
+  <h1 style="color:#161925;">Helmes</h1>
+  <form (ngSubmit)="onSearch(searchField.value, searchForm)" #searchForm='ngForm'>
+    <label>
+      <input
+        placeholder="Search"
+        #searchField
+        [disabled]="!(users.length > 0) "
+        class="search-input"
+        type="text"
+        name="search"
+        ngModel
+        autocomplete="off">
+    </label>
+    <button type="submit" class="button">
+      <fa-icon class="icon" [icon]="icon"></fa-icon>
+    </button>
+  </form>
+
+  <div style="margin-right:10px; ">
+    <p class="search-paragraph" *ngFor="let search of lastSearches" [routerLink]="[search.userName]">{{search.userName}}</p>
+  </div>
+  <p style="color:red;" *ngIf="!exists && clicked">User Doesn't Exists</p>
+
+</div>

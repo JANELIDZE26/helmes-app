@@ -1,0 +1,11 @@
+<div class="users-list" >
+  <div class="heading">
+    <h2 >Github most popular users</h2>
+  </div>
+  <div>
+    <app-spinner *ngIf="isLoading"></app-spinner>
+    <app-user [reposArray]="user.reposArray" *ngFor="let user of userArr" [user]="user"></app-user>
+  </div>
+</div>
+
+

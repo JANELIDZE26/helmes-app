@@ -1,0 +1,66 @@
+.user {
+  background-color: #C1292E;
+  margin: 3vh auto;
+  height: 30vh;
+  width: 60%;
+  padding: 2vh 1vw;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 7px;
+  color: white;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+}
+
+a {
+  color: #c6a15b;
+  text-decoration: none;
+  transition: color .2s;
+}
+
+a:hover {
+  color: #d9ba7b;
+}
+
+.image {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 6%;
+}
+
+.img {
+  width: auto;
+  max-height: 80%;
+  margin: auto auto;
+  border-radius: 10px;
+}
+
+.name {
+  width: 80%;
+  height: 20%;
+  margin: 2vh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+
+}
+
+.repos {
+  width: 100%;
+  height: 80%;
+  margin: 2vh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+
