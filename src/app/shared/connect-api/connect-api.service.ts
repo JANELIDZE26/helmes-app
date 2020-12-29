@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {User} from '../../landing-page/users-list/User.model';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,9 @@ export class ConnectApiService {
 
   }
 
-  getRepos(url): Observable<any> {
-    return this.http.get(url);
+  getRepos(url): Observable<Array<string>> {
+    return this.http.get<Array<{ name: string }>>(url).pipe(map(repos => repos.map(repo => repo.name).slice(0, 3)
+    ));
   }
 
   setUsers(users: User[]): void {
@@ -34,8 +36,8 @@ export class ConnectApiService {
     return this.usersArr;
   }
 
-  getOrganizations(url: string): Observable<any> {
-    return this.http.get(url);
+  getOrganizations(url: string): Observable<Array<any>> {
+    return this.http.get<Array<{ login: string, avatar_url: string, url: string }>>(url).pipe(map(orgs => orgs.slice(0, 3)));
   }
 
   getOrganizationProfiles(url): Observable<any> {

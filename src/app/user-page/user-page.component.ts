@@ -3,6 +3,7 @@ import {ConnectApiService} from '../shared/connect-api/connect-api.service';
 import {User} from '../landing-page/users-list/User.model';
 import {ActivatedRoute} from '@angular/router';
 import {faLongArrowAltLeft} from '@fortawesome/free-solid-svg-icons';
+import {Organization} from './organization.model';
 
 @Component({
   selector: 'app-user-page',
@@ -12,11 +13,7 @@ import {faLongArrowAltLeft} from '@fortawesome/free-solid-svg-icons';
 export class UserPageComponent implements OnInit {
   users: User[] = [];
   user: User = null;
-  organizations: Array<{
-    name: string,
-    avatarURL: string,
-    profileURL: string
-  }> = [];
+  organizations: Organization[] = [];
 
   noOrgs = false;
   backIcon = faLongArrowAltLeft;
@@ -40,21 +37,13 @@ export class UserPageComponent implements OnInit {
       (orgs) => {
         this.isLoading = false;
         if (orgs.length > 0) {
-          // tslint:disable-next-line:forin
-          for (const index in orgs) {
-            this.connect.getOrganizationProfiles(orgs[index].url).subscribe(
+
+          for (const organization of orgs) {
+            this.connect.getOrganizationProfiles(organization.url).subscribe(
               (orgData) => {
-                this.organizations.push({
-                  name: orgs[index].login,
-                  avatarURL: orgs[index].avatar_url,
-                  profileURL: orgData.html_url
-                });
+                this.organizations.push(new Organization(organization.login, organization.avatar_url, orgData.html_url));
               }
             );
-            if (+index === 2) {
-              break;
-            }
-
           }
           this.loaded = true;
         } else {
