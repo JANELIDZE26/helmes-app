@@ -1,17 +1,17 @@
-<div class="user">
+<div [ngClass]="listView ? 'user' : 'user-shrink'">
 
-  <div class="image">
-    <img class="img" src="{{user.avatarUrl}}">
+  <div [ngClass]="listView ? 'image' : 'image-shrink'">
+    <img [ngClass]="listView ? 'img' : 'img-shrink'" src="{{user.avatarUrl}}">
   </div>
 
-  <div class="name">
+  <div [ngClass]="listView ? 'name' : 'name-shrink'">
     <a [routerLink]="[user.userName]"><span style=" font-weight: bold"> {{user.userName}}</span></a>
     <p>{{user.userType}}</p>
   </div>
 
-  <div class="repos">
-    <h2>User repos</h2>
-    <p *ngFor="let repo of reposArray">{{repo}}</p>
+  <div [ngClass]="listView ? 'repos' : 'repos-shrink'">
+    <h2>User repositories</h2>
+    <a class="repo-shrink" href="{{repo.url}}" target="_blank" *ngFor="let repo of reposArray">{{repo.name}}</a>
     <p *ngIf="reposArray.length === 0">Repositories not found</p>
   </div>
 

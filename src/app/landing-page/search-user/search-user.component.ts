@@ -27,8 +27,6 @@ export class SearchUserComponent implements OnInit {
       }
     );
 
-    // this.users = this.connect.getUsers();
-
     if (localStorage.getItem('lastSearches')) {
       this.lastSearches = JSON.parse(localStorage.getItem('lastSearches'));
     }
@@ -50,15 +48,11 @@ export class SearchUserComponent implements OnInit {
       if (this.lastSearches.length > 3) {
         this.lastSearches.shift();
       }
-      // this.lastSearches.sort((a, b) => {
-      //   return a.length - b.length;
-      // });
+
       localStorage.setItem('lastSearches', JSON.stringify(this.lastSearches));
       this.router.navigate([this.user.userName]);
 
       form.reset();
     }
-
   }
-
 }

@@ -5,13 +5,14 @@
   font-size: 20px;
 }
 
-.info a {
-  color: #c6a15b;
+a {
+  color: #F05D23;
   text-decoration: none;
   transition: color .2s;
+
 }
 
-.info a:hover {
+a:hover {
   color: #d9ba7b;
 }
 
@@ -23,7 +24,7 @@
   width: 50%;
   height: 70%;
   padding: 50px;
-  background-color: #C1292E;
+  background-color: #46237A;
   color: white;
   border-radius: 25px;
 }
@@ -50,10 +51,14 @@
   margin-bottom: 30px;
 }
 
-
-.repos p {
+.repos {
+  width:50%;
+  height:20%;
+  display: flex;
+  flex-direction: column;
+}
+.repos a {
   margin: 10px 0;
-  padding: 0;
 }
 
 .org {
@@ -90,7 +95,7 @@
 }
 
 .organizations a {
-  color: #c6a15b;
+  color: #F05D23;
   text-decoration: none;
   transition: color .2s;
 }
@@ -102,7 +107,7 @@
 .icon {
   color: #161925 !important;
   transition: color .3s;
-  font-size:60px;
+  font-size: 60px;
 }
 
 .icon:hover {

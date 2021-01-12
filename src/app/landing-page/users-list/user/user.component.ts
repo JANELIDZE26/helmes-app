@@ -9,7 +9,7 @@ import {User} from '../User.model';
 export class UserComponent implements OnInit {
   @Input() user: User;
   @Input() reposArray;
-
+  @Input() listView;
   constructor() {
 
   }

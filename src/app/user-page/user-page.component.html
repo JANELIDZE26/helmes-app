@@ -14,13 +14,13 @@
   <hr>
   <div class="repos">
     <h3>Repositories</h3>
-    <p *ngFor="let repo of user.reposArray">{{repo}}</p>
+    <a href="{{repo.url}}" target="_blank" *ngFor="let repo of user.reposArray">{{repo.name}}</a>
   </div>
   <div class="org">
     <h3>Organizations</h3>
 
     <div *ngIf="noOrgs" class="organizations">
-      <h2>No Organizations</h2>
+      <h2>No Organizations To Show</h2>
     </div>
     <div class="organizations" *ngFor="let org of organizations">
       <img class="org-img" src="{{org.avatarURL}}" alt="organization avatar">

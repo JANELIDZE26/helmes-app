@@ -18,7 +18,8 @@
   </form>
 
   <div style="margin-right:10px; ">
-    <p class="search-paragraph" *ngFor="let search of lastSearches" [routerLink]="[search.userName]">{{search.userName}}</p>
+    <p class="search-paragraph" *ngFor="let lastSearch of lastSearches"
+       [routerLink]="[lastSearch.userName]">{{lastSearch.userName}}</p>
   </div>
   <p style="color:red;" *ngIf="!exists && clicked">User Doesn't Exists</p>
 
