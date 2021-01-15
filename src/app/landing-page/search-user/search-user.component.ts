@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
-import {User} from '../users-list/User.model';
-import {ConnectApiService} from '../../shared/connect-api/connect-api.service';
+import {User} from '../users-list/user.model';
+import {ApiService} from '../../api/api.service';
+
 import {Router} from '@angular/router';
 
 @Component({
@@ -17,11 +18,11 @@ export class SearchUserComponent implements OnInit {
   clicked = false;
   user: User;
 
-  constructor(private connect: ConnectApiService, private router: Router) {
+  constructor(private api: ApiService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.connect.users.subscribe(
+    this.api.users.subscribe(
       (users) => {
         this.users = users;
       }

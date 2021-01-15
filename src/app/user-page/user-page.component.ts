@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ConnectApiService} from '../shared/connect-api/connect-api.service';
-import {User} from '../landing-page/users-list/User.model';
+import {ApiService} from '../api/api.service';
+import {User} from '../landing-page/users-list/user.model';
 import {ActivatedRoute} from '@angular/router';
 import {faLongArrowAltLeft} from '@fortawesome/free-solid-svg-icons';
 import {Organization} from './organization.model';
@@ -21,12 +21,12 @@ export class UserPageComponent implements OnInit {
   isLoading = false;
   loaded = false;
 
-  constructor(private connect: ConnectApiService, private router: ActivatedRoute) {
+  constructor(private api: ApiService, private router: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.users = this.connect.getUsers();
+    this.users = this.api.getUsers();
     const name = this.router.snapshot.params.name;
     for (const user of this.users) {
       if (user.userName === name) {
@@ -34,13 +34,13 @@ export class UserPageComponent implements OnInit {
       }
     }
 
-    this.connect.getOrganizations(this.user.organizationsURL).subscribe(
+    this.api.getOrganizations(this.user.organizationsURL).subscribe(
       (orgs) => {
         this.isLoading = false;
         if (orgs.length > 0) {
 
           for (const organization of orgs) {
-            this.connect.getOrganizationProfiles(organization.url).subscribe(
+            this.api.getOrganizationProfiles(organization.url).subscribe(
               (orgData) => {
                 this.organizations.push(new Organization(organization.login, organization.avatar_url, orgData.html_url));
               }

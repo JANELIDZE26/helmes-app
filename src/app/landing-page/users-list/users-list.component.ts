@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ConnectApiService} from '../../shared/connect-api/connect-api.service';
-import {User} from './User.model';
+import {ApiService} from '../../api/api.service';
+
+import {User} from './user.model';
 import {HttpClient} from '@angular/common/http';
 import {faThLarge, faThList} from '@fortawesome/free-solid-svg-icons';
 
@@ -17,18 +18,18 @@ export class UsersListComponent implements OnInit {
   listView = true;
   gridView = false;
 
-  constructor(private http: HttpClient, private connect: ConnectApiService) {
+  constructor(private http: HttpClient, private api: ApiService) {
   }
 
   ngOnInit(): void {
     this.isLoading = true;
 
-    this.connect.fetchUsers().subscribe(
+    this.api.fetchUsers().subscribe(
       (res) => {
 
         this.isLoading = false;
         for (const user of res) {
-          this.connect.getRepos(user.repos_url).subscribe(
+          this.api.getRepos(user.repos_url).subscribe(
             (repos) => {
               console.log([...repos]);
               if (repos.length !== 0) {
@@ -38,7 +39,7 @@ export class UsersListComponent implements OnInit {
             }
           );
         }
-        this.connect.setUsers(this.userArr);
+        this.api.setUsers(this.userArr);
         localStorage.setItem('users', JSON.stringify(this.userArr));
       },
       (err) => {
