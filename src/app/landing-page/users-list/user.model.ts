@@ -1,4 +1,4 @@
-import {Repo} from '../../shared/connect-api/connect-api.service';
+import {Repo} from '../../api/api.service';
 
 export class User {
   constructor(
