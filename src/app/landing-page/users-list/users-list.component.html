@@ -22,7 +22,7 @@
       *ngFor="let user of userArr"
       [viewMode]="isList"
       [ngClass]="!isList ? 'app-user' : null"
-      [repos]="user.reposArray"
+      [repos]="user.repos"
       [user]="user"
     ></app-user>
   </div>

@@ -3,15 +3,13 @@
     <fa-icon [icon]="backIcon" class="icon"></fa-icon>
   </a>
 </nav>
-<div  class="container">
+<div *ngIf="user" class="container">
   <img class="img" src="{{ user.avatar_url }}" />
 
   <div class="info">
     <h3>
       Name:
-      <a href="{{ user.html_url }}" target="_blank">{{
-        user.login
-      }}</a>
+      <a href="{{ user.html_url }}" target="_blank">{{ user.login }}</a>
     </h3>
     <p style="margin-top: 5px">Type: {{ user.type }}</p>
   </div>
@@ -19,8 +17,8 @@
   <div class="repos">
     <h3>Repositories</h3>
     <a
-      *ngFor="let repo of user.reposArray"
-      href="{{ repo.url }}"
+      *ngFor="let repo of user.repos"
+      href="{{ repo.html_url }}"
       target="_blank"
       >{{ repo.name }}</a
     >
@@ -28,20 +26,20 @@
   <div class="org">
     <h3>Organizations</h3>
 
-    <div *ngIf="noOrgs" class="organizations">
+    <div *ngIf="user.organizations.length === 0" class="organizations">
       <h2>No Organizations To Show</h2>
     </div>
-    <div *ngFor="let org of organizations" class="organizations">
+    <div *ngFor="let org of user.organizations" class="organizations">
       <img
         alt="organization avatar"
         class="org-img"
-        src="{{ org.avatarURL }}"
+        src="{{ org.avatar_url }}"
       />
-      <a href="{{ org.profileURL }}" target="_blank">{{ org.name }}</a>
+      <a href="{{ org.htmlUrl }}" target="_blank">{{ org.login }}</a>
     </div>
   </div>
 </div>
 <app-spinner
-  style="position: absolute; top: 20%; left: 50%"
   *ngIf="isLoading"
+  style="position: absolute; top: 20%; left: 50%"
 ></app-spinner>

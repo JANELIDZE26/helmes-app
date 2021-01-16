@@ -35,10 +35,9 @@ export class UsersListComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.api.fetchData().subscribe(
+    this.api.getUsers().subscribe(
       (users: User[]) => {
         this.userArr = users;
-        this.api.users$.next(users);
       },
       console.log,
       () => (this.isLoading = false)

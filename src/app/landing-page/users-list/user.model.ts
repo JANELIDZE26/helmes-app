@@ -1,14 +1,13 @@
-import { Repos } from '../../api/api.service';
+import { Organization, Repos } from '../../api/api.service';
 
-export class User {
-  constructor(
-    public avatar_url: string,
-    public html_url: string,
-    public organizations_url: string,
-    public login: string,
-    public type: string,
-    public id: string,
-    public reposArray?: Repos[],
-    public repos_url?: string
-  ) {}
+export interface User {
+  avatar_url: string;
+  html_url: string;
+  organizations_url: string;
+  login: string;
+  type: string;
+  id: string;
+  repos?: Repos[];
+  repos_url?: string;
+  organizations?: Organization[];
 }
