@@ -2,14 +2,28 @@
   <div class="heading">
     <h2>Github most popular users</h2>
     <div class="grid-icons">
-      <fa-icon [ngClass]="listView ? 'focusMode' : null" (click)="changeToList()" class="icon" [icon]="listIcon"></fa-icon>
-      <fa-icon [ngClass]="gridView ? 'focusMode' : null" (click)="changeToGrid()" class="icon" [icon]="gridIcon"></fa-icon>
+      <fa-icon
+        (click)="changeToList()"
+        [icon]="listIcon"
+        [ngClass]="isList ? 'focusMode' : null"
+        class="icon"
+      ></fa-icon>
+      <fa-icon
+        (click)="changeToGrid()"
+        [icon]="gridIcon"
+        [ngClass]="isGrid ? 'focusMode' : null"
+        class="icon"
+      ></fa-icon>
     </div>
   </div>
-  <div [ngClass]="!listView ? 'container':null">
+  <div [ngClass]="!isList ? 'container' : null">
     <app-spinner *ngIf="isLoading"></app-spinner>
-    <app-user [ngClass]="!listView? 'app-user' : null" [listView]="listView" [reposArray]="user.reposArray" *ngFor="let user of userArr" [user]="user"></app-user>
+    <app-user
+      *ngFor="let user of userArr"
+      [viewMode]="isList"
+      [ngClass]="!isList ? 'app-user' : null"
+      [repos]="user.reposArray"
+      [user]="user"
+    ></app-user>
   </div>
 </div>
-
-

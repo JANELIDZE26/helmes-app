@@ -1,14 +1,14 @@
-import {Repo} from '../../api/api.service';
+import { Repos } from '../../api/api.service';
 
 export class User {
   constructor(
-    public avatarUrl: string,
-    public userName: string,
-    public userType: string,
+    public avatar_url: string,
+    public html_url: string,
+    public organizations_url: string,
+    public login: string,
+    public type: string,
     public id: string,
-    public reposArray: Repo[],
-    public userProfileURL: string,
-    public organizationsURL: string,
-  ) {
-  }
+    public reposArray?: Repos[],
+    public repos_url?: string
+  ) {}
 }

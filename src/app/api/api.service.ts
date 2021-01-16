@@ -1,64 +1,82 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable, Subject} from 'rxjs';
-import {User} from '../landing-page/users-list/user.model';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from '../landing-page/users-list/user.model';
+import { map, mergeAll, mergeMap, tap, toArray } from 'rxjs/operators';
 
-export interface Repo {
-  name: string;
-  url: string;
-}
-
-interface FetchRepos {
+export interface Repos {
   name: string;
   html_url: string;
 }
 
-interface OrganizationData {
+interface Organization {
   login: string;
   avatar_url: string;
   url: string;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
-  users = new Subject<User[]>();
+  users$ = new BehaviorSubject<User[]>([]);
   usersArr: User[];
+  url = ' https://api.github.com/users';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {}
+
+  fetchData(): Observable<User[]> {
+    return this.http.get<User[]>(this.url).pipe(
+      tap(console.log),
+      mergeAll(),
+      mergeMap((user: User) => this.getUsers(user)),
+      toArray()
+    );
   }
 
-  fetchUsers(): Observable<any> {
-    return this.http.get(' https://api.github.com/users');
+  getUsers(user: User): Observable<User> {
+    return this.getRepos(user.repos_url).pipe(
+      map(
+        (repos: Repos[]) =>
+          new User(
+            user.avatar_url,
+            user.html_url,
+            user.organizations_url,
+            user.login,
+            user.type,
+            user.id,
+            repos
+          )
+      )
+    );
   }
 
-  getRepos(url): Observable<Array<Repo>> {
-    return this.http.get <Array<FetchRepos>>(url).pipe(map(repos => {
-        return repos.map((repo: FetchRepos): Repo => ({
-          name: repo.name,
-          url: repo.html_url
-        })).slice(0, 3);
-      }
-    ));
+  getUser(name: string): Observable<User> {
+    return this.http.get<User>(`https://api.github.com/users/${name}`);
   }
 
-  setUsers(users: User[]): void {
-    this.users.next(users);
-    this.usersArr = users;
+  getRepos(url): Observable<Repos[]> {
+    return this.http.get<Repos[]>(url).pipe(
+      map((repos: Repos[]) =>
+        repos
+          .map(
+            (repo: Repos): Repos => ({
+              name: repo.name,
+              html_url: repo.html_url,
+            })
+          )
+          .slice(0, 3)
+      )
+    );
   }
 
-  getUsers(): User[] {
-    return this.usersArr;
-  }
-
-  getOrganizations(url: string): Observable<Array<any>> {
-    return this.http.get<Array<OrganizationData>>(url).pipe(map(org => org.slice(0, 3)));
+  getOrganizations(url: string): Observable<Organization[]> {
+    return this.http
+      .get<Organization[]>(url)
+      .pipe(map((org: Organization[]) => org.slice(0, 3)));
   }
 
   getOrganizationProfiles(url): Observable<any> {
     return this.http.get(url);
   }
-
 }

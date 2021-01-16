@@ -8,14 +8,14 @@ import {User} from '../user.model';
 })
 export class UserComponent implements OnInit {
   @Input() user: User;
-  @Input() reposArray;
-  @Input() listView;
+  @Input() repos;
+  @Input() viewMode;
   constructor() {
 
   }
 
   ngOnInit(): void {
-    this.reposArray.sort((a, b) => {
+    this.repos.sort((a, b) => {
       return a.length - b.length;
     });
   }

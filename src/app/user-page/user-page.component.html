@@ -1,20 +1,29 @@
 <nav class="nav">
   <a routerLink="/">
-    <fa-icon class="icon" [icon]="backIcon"></fa-icon>
+    <fa-icon [icon]="backIcon" class="icon"></fa-icon>
   </a>
 </nav>
-<div *ngIf="loaded" class="container">
-
-  <img class="img" src="{{user.avatarUrl}}">
+<div  class="container">
+  <img class="img" src="{{ user.avatar_url }}" />
 
   <div class="info">
-    <h3>Name: <a href="{{user.userProfileURL}}" target="_blank">{{user.userName}}</a></h3>
-    <p style="margin-top: 5px;">Type: {{user.userType}}</p>
+    <h3>
+      Name:
+      <a href="{{ user.html_url }}" target="_blank">{{
+        user.login
+      }}</a>
+    </h3>
+    <p style="margin-top: 5px">Type: {{ user.type }}</p>
   </div>
-  <hr>
+  <hr />
   <div class="repos">
     <h3>Repositories</h3>
-    <a href="{{repo.url}}" target="_blank" *ngFor="let repo of user.reposArray">{{repo.name}}</a>
+    <a
+      *ngFor="let repo of user.reposArray"
+      href="{{ repo.url }}"
+      target="_blank"
+      >{{ repo.name }}</a
+    >
   </div>
   <div class="org">
     <h3>Organizations</h3>
@@ -22,10 +31,17 @@
     <div *ngIf="noOrgs" class="organizations">
       <h2>No Organizations To Show</h2>
     </div>
-    <div class="organizations" *ngFor="let org of organizations">
-      <img class="org-img" src="{{org.avatarURL}}" alt="organization avatar">
-      <a href="{{org.profileURL}}" target="_blank">{{org.name}}</a>
+    <div *ngFor="let org of organizations" class="organizations">
+      <img
+        alt="organization avatar"
+        class="org-img"
+        src="{{ org.avatarURL }}"
+      />
+      <a href="{{ org.profileURL }}" target="_blank">{{ org.name }}</a>
     </div>
   </div>
 </div>
-<app-spinner style="position: absolute; top:20%; left:50%;" *ngIf="isLoading"></app-spinner>
+<app-spinner
+  style="position: absolute; top: 20%; left: 50%"
+  *ngIf="isLoading"
+></app-spinner>
