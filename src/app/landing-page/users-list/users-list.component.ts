@@ -17,7 +17,6 @@ enum ViewMode {
 })
 export class UsersListComponent implements OnInit {
   userArr: User[] = [];
-  repos = [];
   isLoading = false;
   listIcon = faThList;
   gridIcon = faThLarge;
@@ -42,8 +41,6 @@ export class UsersListComponent implements OnInit {
       console.log,
       () => (this.isLoading = false)
     );
-
-
   }
 
   changeToGrid(): void {
@@ -54,5 +51,3 @@ export class UsersListComponent implements OnInit {
     this.viewMode = ViewMode.List;
   }
 }
-
-

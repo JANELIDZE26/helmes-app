@@ -6,10 +6,9 @@
 }
 
 a {
-  color: #F05D23;
+  color: #f05d23;
   text-decoration: none;
-  transition: color .2s;
-
+  transition: color 0.2s;
 }
 
 a:hover {
@@ -24,7 +23,7 @@ a:hover {
   width: 50%;
   height: 70%;
   padding: 50px;
-  background-color: #46237A;
+  background-color: #46237a;
   color: white;
   border-radius: 25px;
 }
@@ -42,7 +41,8 @@ a:hover {
   margin: 0 40px 40px 0;
 }
 
-.info p, h3 {
+.info p,
+h3 {
   margin: 0;
   padding: 0;
 }
@@ -52,11 +52,12 @@ a:hover {
 }
 
 .repos {
-  width:50%;
-  height:20%;
+  width: 50%;
+  height: 20%;
   display: flex;
   flex-direction: column;
 }
+
 .repos a {
   margin: 10px 0;
 }
@@ -85,19 +86,17 @@ a:hover {
 }
 
 .organizations a {
-
   margin-left: 50px;
   position: absolute;
   top: 15px;
   display: inline-block;
   text-decoration: none;
-
 }
 
 .organizations a {
-  color: #F05D23;
+  color: #f05d23;
   text-decoration: none;
-  transition: color .2s;
+  transition: color 0.2s;
 }
 
 .organizations a:hover {
@@ -106,10 +105,10 @@ a:hover {
 
 .icon {
   color: #161925 !important;
-  transition: color .3s;
+  transition: color 0.3s;
   font-size: 60px;
 }
 
 .icon:hover {
-  color: #D5AC4E !important;
+  color: #d5ac4e !important;
 }

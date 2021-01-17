@@ -1,14 +1,15 @@
 .loader,
 .loader:before,
 .loader:after {
-  background: #46237A;
+  background: #46237a;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
   width: 1em;
   height: 4em;
 }
+
 .loader {
-  color:#46237A;
+  color: #46237a;
   text-indent: -9999em;
   margin: 88px auto;
   position: relative;
@@ -19,17 +20,20 @@
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
 }
+
 .loader:before,
 .loader:after {
   position: absolute;
   top: 0;
-  content: '';
+  content: "";
 }
+
 .loader:before {
   left: -1.5em;
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
+
 .loader:after {
   left: 1.5em;
 }
@@ -43,8 +47,9 @@
   width: 1em;
   height: 4em;
 }
+
 .orgSpinner {
-  color:white;
+  color: white;
   text-indent: -9999em;
   margin: 88px auto;
   position: relative;
@@ -60,19 +65,18 @@
 .orgSpinner:after {
   position: absolute;
   top: 0;
-  content: '';
+  content: "";
 }
+
 .orgSpinner:before {
   left: -1.5em;
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
+
 .orgSpinner:after {
   left: 1.5em;
 }
-
-
-
 
 @-webkit-keyframes load1 {
   0%,
@@ -86,6 +90,7 @@
     height: 5em;
   }
 }
+
 @keyframes load1 {
   0%,
   80%,

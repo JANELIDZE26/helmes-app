@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api/api.service';
 import { User } from '../landing-page/users-list/user.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -14,7 +14,11 @@ export class UserPageComponent implements OnInit {
   backIcon = faLongArrowAltLeft;
   isLoading = false;
 
-  constructor(private api: ApiService, private router: ActivatedRoute) {}
+  constructor(
+    private api: ApiService,
+    private router: ActivatedRoute,
+    private route: Router
+  ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -22,7 +26,7 @@ export class UserPageComponent implements OnInit {
     const name = this.router.snapshot.params.name;
     this.api.getUser(name).subscribe(
       (user: User) => (this.user = user),
-      console.log,
+      (err) => this.route.navigateByUrl(''),
       () => (this.isLoading = false)
     );
   }
