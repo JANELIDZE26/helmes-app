@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../api/api.service';
+import { ApiService } from '../../services/api/api.service';
 
 import { User } from './user.model';
 import { HttpClient } from '@angular/common/http';

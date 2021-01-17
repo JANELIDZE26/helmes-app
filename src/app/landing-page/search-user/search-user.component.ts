@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { User } from '../users-list/user.model';
-import { ApiService } from '../../api/api.service';
+import {Component, OnInit} from '@angular/core';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {User} from '../users-list/user.model';
+import {ApiService} from '../../services/api/api.service';
 
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
+import {LocalStorageService} from '../../services/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-search-user',
@@ -16,11 +17,16 @@ export class SearchUserComponent implements OnInit {
   searched = false;
   user: User;
 
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    private localStorageService: LocalStorageService
+  ) {
+  }
 
   ngOnInit(): void {
-    if (localStorage.getItem('lastSearches')) {
-      this.lastSearches = JSON.parse(localStorage.getItem('lastSearches'));
+    if (this.localStorageService.getItem('lastSearches')) {
+      this.lastSearches = this.localStorageService.getItem('lastSearches');
     }
   }
 
@@ -37,10 +43,7 @@ export class SearchUserComponent implements OnInit {
           }
           this.router.navigateByUrl(this.user.login);
           form.reset();
-          localStorage.setItem(
-            'lastSearches',
-            JSON.stringify(this.lastSearches)
-          );
+          this.localStorageService.setItem('lastSearches', this.lastSearches);
         }
       },
       (err) => (this.searched = true),

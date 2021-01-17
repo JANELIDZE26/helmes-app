@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../landing-page/users-list/user.model';
+import { User } from '../../landing-page/users-list/user.model';
 import { map, mergeAll, mergeMap, shareReplay, toArray } from 'rxjs/operators';
 
 export interface Repos {

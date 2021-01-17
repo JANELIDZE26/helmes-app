@@ -1,4 +1,4 @@
-import { Organization, Repos } from '../../api/api.service';
+import { Organization, Repos } from '../../services/api/api.service';
 
 export interface User {
   avatar_url: string;
