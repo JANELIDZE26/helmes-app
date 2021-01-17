@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '../landing-page/users-list/user.model';
-import { map, mergeAll, mergeMap, tap, toArray } from 'rxjs/operators';
+import { map, mergeAll, mergeMap, shareReplay, toArray } from 'rxjs/operators';
 
 export interface Repos {
   name: string;
@@ -30,12 +30,13 @@ export class ApiService {
     return this.http.get<User[]>(this.url).pipe(
       mergeAll(),
       mergeMap((user: User) => this.attachRepos(user)),
-      toArray()
+      toArray(),
+      shareReplay(1)
     );
   }
 
   getUser(name: string): Observable<User> {
-    return this.http.get<User>(`https://api.github.com/users/${name}`).pipe(
+    return this.http.get<User>(` https://api.github.com/users/${name}`).pipe(
       mergeMap((user: User) => this.attachRepos(user)),
       mergeMap((user: User) => this.getOrganizations(user))
     );
@@ -46,7 +47,8 @@ export class ApiService {
       map((repos: Repos[]) => ({
         ...user,
         repos: repos.slice(0, 3),
-      }))
+      })),
+      shareReplay(1)
     );
   }
 
@@ -58,8 +60,7 @@ export class ApiService {
         mergeAll(),
         mergeMap((org: Organization) => this.getOrganizationProfiles(org)),
         toArray(),
-        map((orgs: Organization[]) => ({ ...user, organizations: orgs })),
-        tap(console.log)
+        map((orgs: Organization[]) => ({ ...user, organizations: orgs }))
       );
   }
 

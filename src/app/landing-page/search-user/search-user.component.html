@@ -7,7 +7,6 @@
     <label>
       <input
         #searchField
-        [disabled]="!(users.length > 0)"
         autocomplete="off"
         class="search-input"
         name="search"
@@ -20,14 +19,14 @@
       <fa-icon [icon]="icon" class="icon"></fa-icon>
     </button>
   </form>
-  <div style="margin-right: 10px">
+  <div  style="margin-right: 10px">
     <p
       *ngFor="let lastSearch of lastSearches"
-      [routerLink]="[lastSearch.userName]"
+      [routerLink]="[lastSearch.login]"
       class="search-paragraph"
     >
-      {{ lastSearch.userName }}
+      {{ lastSearch.login }}
     </p>
   </div>
-  <p *ngIf="!exists && clicked" style="color: red">User Doesn't Exists</p>
+  <p *ngIf="searched && !user" style="color: red">User Not Found</p>
 </div>

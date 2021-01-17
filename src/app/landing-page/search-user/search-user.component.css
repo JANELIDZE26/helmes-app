@@ -14,7 +14,7 @@ h1 {
 }
 
 .button {
-  background-color: #FDFFFC;
+  background-color: #fdfffc;
   outline: none;
   border: hidden;
   cursor: pointer;
@@ -24,16 +24,16 @@ h1 {
   padding: 10px;
   margin-top: 50px;
   border: hidden;
-  border-bottom: 2px solid #484D6D;
+  border-bottom: 2px solid #484d6d;
   outline: none;
   transition: all 0.2s;
   vertical-align: bottom;
-  background-color: #FDFFFC;
+  background-color: #fdfffc;
 }
 
 .search-input:focus,
 .search-input:active {
-  border-color: #F9A03F;
+  border-color: #f9a03f;
 }
 
 .search-input[disabled],
@@ -41,7 +41,7 @@ h1 {
 .search-input:active,
 .search-input:hover,
 .search-input:-webkit-autofill {
-  background-color: #FDFFFC;
+  background-color: #fdfffc;
 }
 
 .icon {
@@ -49,11 +49,11 @@ h1 {
   font-size: 20px;
   top: 160px;
   transition: color 0.2s;
-  color: #484D6D;
+  color: #484d6d;
 }
 
 .icon:hover {
-  color: #F9A03F !important;
+  color: #f9a03f !important;
 }
 
 p {
@@ -63,7 +63,7 @@ p {
 
 .search-paragraph {
   color: #c6a15b;
-  transition: color .2s;
+  transition: color 0.2s;
   cursor: pointer;
   font-weight: bolder;
 }
@@ -71,4 +71,3 @@ p {
 .search-paragraph:hover {
   color: #d9ba7b;
 }
-

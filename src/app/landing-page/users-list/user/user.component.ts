@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {User} from '../user.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-user',
@@ -11,8 +11,7 @@ export class UserComponent implements OnInit {
   @Input() repos;
   @Input() viewMode;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.repos.sort((a, b) => {
